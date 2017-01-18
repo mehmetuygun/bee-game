@@ -53,7 +53,7 @@
 				</tbody>
 			</table>
 		</div>	
-		<div>The Round: <div id="display_round">0</div></div>
+		<p>The Round: <span id="display_round">0</span></p>
 
 		<div id="inform"></div>
 
@@ -70,7 +70,7 @@
 			$.getJSON( 'request/hit.php', function( data ) {
 					if (data.status == 0)
 					{
-						$("#inform").html("Game is over!. <br> You can start again by pressing play again.");
+						$("#inform").html("Game is over!. <br> You can start again by pressing play again button.");
 					}	
 					else
 					{
