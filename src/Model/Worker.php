@@ -14,7 +14,7 @@
 		 * @param integer $life     
 		 * @param integer $hitPoint
 		 */
-		function __construct($lifeSpan = 75, $life = 10, $hitPoint = 5)
+		function __construct($lifeSpan = 75, $life = 5, $hitPoint = 10)
 		{
 			$this->lifeSpan = $lifeSpan;
 			$this->life 	= $life;
