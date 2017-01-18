@@ -10,7 +10,7 @@
 		 * The total points of bee. When it is deducted in zero. The bee loses its life.
 		 * @var integer
 		 */
-		public $lifeSpane;
+		public $lifeSpan;
 
 		/**
 		 * The amount of life that bee has.
