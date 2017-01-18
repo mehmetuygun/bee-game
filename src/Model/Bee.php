@@ -45,6 +45,14 @@
 			return false;
 		}
 
+		/**
+		 * Subtruct hit point from lifespan of bee
+		 * @return void
+		 */
+		public function subHitPoint()
+		{
+			$this->lifeSpan -= $this->hitPoint;
+		}
 	}
 
 ?>
