@@ -22,4 +22,6 @@ Drone hase
   If queen be is dead, the game is over.
   If all bees are dead, the game is over too.
   
+  Screenshot of game
   
+  ![Alt text](  https://s23.postimg.org/tim2gmk97/game_screen_shot.png "bee-game")
