@@ -35,6 +35,18 @@
 			$this->lifeSpan -= $this->hitPoint;
 		}
 
+		/**
+		 * The function which check if bee is dead
+		 * @return boolean
+		 */
+		public function isDead()
+		{
+			if ($this->life < 1)
+				return true;
+
+			return false;
+		}
+
 	}
 
 ?>
