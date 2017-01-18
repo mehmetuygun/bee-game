@@ -5,7 +5,7 @@
 	/**
 	* The Bee abstract class.
 	*/
-  	abstract class ClassName
+  	abstract class Bee
 	{	
 
 		/**
@@ -25,6 +25,15 @@
 		 * @var [type]
 		 */
 		public $hitPoint
+
+		/**
+		 * The function which subtructs hit point from life span of bee
+		 * @return void
+		 */
+		public function hit()
+		{
+			$this->lifeSpan -= $this->hitPoint;
+		}
 
 	}
 
