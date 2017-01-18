@@ -1,8 +1,6 @@
-<?php
+<?php namespace App\Model;
 
-	namespace Model;
-
-	use Bee;
+	use App\Model\Bee;
 
 	/**
 	* The class of worker model.

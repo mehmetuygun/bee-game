@@ -1,6 +1,4 @@
-<?php
-
-	namespace Model;
+<?php namespace App\Model;
 
 	/**
 	* The Bee abstract class.
@@ -24,7 +22,7 @@
 		 * The hit point that will deduct from bee's lifeSpan.
 		 * @var [type]
 		 */
-		public $hitPoint
+		public $hitPoint;
 
 		/**
 		 * The function which subtructs hit point from life span of bee
