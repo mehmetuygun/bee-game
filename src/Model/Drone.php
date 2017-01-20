@@ -1,7 +1,7 @@
 <?php 
-namespace App\Model;
+namespace MehmetUygun\Model;
 
-use App\Model\Bee as Bee;
+use MehmetUygun\Model\Bee as Bee;
 
 /**
 * The class of drone model.
@@ -18,8 +18,10 @@ class Drone extends Bee
 	function __construct($lifeSpan = 50, $life = 8, $hitPoint = 12)
 	{
 		$this->lifeSpan = $lifeSpan;
+		$this->_lifeSpan = $lifeSpan;
 		$this->life 	= $life;
+		$this->_life 	= $life;
 		$this->hitPoint = $hitPoint;
+		$this->_hitPoint = $hitPoint;
 	}
 }
-?>

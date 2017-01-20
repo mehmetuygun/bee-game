@@ -1,5 +1,5 @@
 <?php 
-namespace App\Model;
+namespace MehmetUygun\Model;
 
 /**
 * The Bee abstract class.
@@ -28,6 +28,9 @@ abstract class Bee
 	 * The function which subtructs hit point from life span of bee
 	 * @return void
 	 */
+	
+	protected $_lifeSpan, $_life, $_hitPoint;
+
 	public function hit()
 	{
 		$this->lifeSpan -= $this->hitPoint;
@@ -39,8 +42,12 @@ abstract class Bee
 	 */
 	public function isDead()
 	{
-		if ($this->life < 1)
-			return true;
+		if ($this->life < 1) {
+			return true; 
+		} elseif ($this->lifeSpan < 1) {
+			$this->subLife();
+			$this->resetLifeSpan();
+		}
 
 		return false;
 	}
@@ -52,7 +59,21 @@ abstract class Bee
 	public function subHitPoint()
 	{
 		$this->lifeSpan -= $this->hitPoint;
+
+		if ($this->lifeSpan < 1)
+			$this->subLife();
 	}
+
+	private function subLife($life = 1)
+	{
+		$this->life -= $life;
+	}
+
+	private function resetLifeSpan()
+	{
+		$this->lifeSpan = $this->_lifeSpan;
+	}
+
 }
 
 ?>

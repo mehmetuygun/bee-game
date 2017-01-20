@@ -1,7 +1,7 @@
 <?php 
-namespace App\Model;
+namespace MehmetUygun\Model;
 
-use App\Model\Bee as Bee;
+use MehmetUygun\Model\Bee as Bee;
 
 /**
 * The class of worker model.
@@ -17,8 +17,11 @@ class Worker extends Bee
 	function __construct($lifeSpan = 75, $life = 5, $hitPoint = 10)
 	{
 		$this->lifeSpan = $lifeSpan;
+		$this->_lifeSpan = $lifeSpan;
 		$this->life 	= $life;
+		$this->_life 	= $life;
 		$this->hitPoint = $hitPoint;
+		$this->_hitPoint = $hitPoint;
 	}
 }
 ?>
