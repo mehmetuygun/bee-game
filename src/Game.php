@@ -1,23 +1,22 @@
 <?php 
-namespace App;
+namespace MehmetUygun;
 
 /**
 * The class of game which do game logic
 */
 class Game
 {
-	public $queen;
-	public $worker;
-	public $drone;
+	/**
+	 * hold bees in a array
+	 * @var array
+	 */
+	private $bees = [];
 
-	public $round = 0;
-
-	function __construct()
-	{
-		$this->queen = new Model\Queen;
-		$this->worker = new Model\Worker;
-		$this->drone = new Model\Drone;
-	}
+	/**
+	 * hold counted round
+	 * @var integer
+	 */
+	private $round = 0;
 
 	/**
 	 * The function does select bee randomly
@@ -25,61 +24,86 @@ class Game
 	 */
 	public function selectBee()
 	{
-		return rand(1,3);
+		return array_rand($this->bees);
+	}
+
+	/**
+	 * Add new bee to array
+	 * @param object
+	 */
+	public function addBee($bee)
+	{
+		$this->bees[] = $bee;
+	}
+
+	/**
+	 * Get the bee information
+	 * @param  string class name of bee
+	 * @return object
+	 */
+	public function getBee($className)
+	{
+		$className = 'MehmetUygun\\Model\\'.$className;
+		foreach ($this->bees as $key => $value) {
+			if ($value instanceof $className)
+				return $value;
+		}
 	}
 
 	/**
 	 * Hit the bee
 	 * @return void
 	 */
-	public function hit()
+	public function hitBee($selectBee = null)
 	{
-		if (!$this->isOver()) {
-			switch ($this->selectBee()) {
-				case 1:
-					$this->queen->hit();
-
-					if ($this->queen->lifeSpan < 1) {
-						$this->queen->life -= 1;
-						$this->queen->lifeSpan = 100; 
-					}
-
-					break;
-				case 2:
-					$this->worker->hit();
-
-					if ($this->worker->lifeSpan < 1) {
-						$this->worker->life -= 1;
-						$this->worker->lifeSpan = 75; 
-					}
-
-					break;
-				case 3:
-					$this->drone->hit();
-
-					if ($this->drone->lifeSpan < 1) {
-						$this->drone->life -= 1;
-						$this->drone->lifeSpan = 50; 
-					}
-					
-					break;
-				
-				default:
-					# code...
-					break;
-			}
-
-			$this->round += 1;
+		if ($this->isOver()) {
+			return;
 		}
+
+		if ($selectBee) {
+			$selectedBee = $selectBee;
+			$bee = $this->bees[$selectedBee];
+		} else {
+			$selectedBee = $this->selectBee();
+			$bee = $this->bees[$selectedBee];
+		}
+
+		$bee->subHitPoint();
+
+		if ($bee->isDead()) {
+			$this->removeBee($selectedBee);
+		}
+
+		$this->round += 1;
 	}
 
 	/**
 	 * Check if game is over
 	 * @return boolean 
 	 */
-	public function isOver()
+	public function isOver($bee = "Queen" )
 	{
-		return $this->queen->isDead();
+		if (!in_array($this->getBee("Queen"), $this->bees))
+			return true;
+		return $this->getBee("Queen")->isDead();
+	}
+
+	/**
+	 * Remove bee from the list
+	 * @param  integer 			 the key of array which holds bee
+	 * @return void
+	 */
+	private function removeBee($selectBee)
+	{
+		unset($this->bees[$selectBee]);
+	}
+
+	/**
+	 * Get the current round of game
+	 * @return integer
+	 */
+	public function getRound()
+	{
+		return $this->round;
 	}
 }
-?>
