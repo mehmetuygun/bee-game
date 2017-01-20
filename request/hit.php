@@ -1,37 +1,50 @@
 <?php
+session_start();
 
 require '../vendor/autoload.php';
 
 //Get game object from stored file
-$storedGame = file_get_contents('../store');
+// $storedGame = file_get_contents('../store');
 
 //Convert stored file into object
-$Game = unserialize($storedGame);
+$Game = unserialize($_SESSION["Game"]);
 
-$Game->hit();
+$Game->hitBee();
 
-//Check the if game is over
-if ($Game->isOver())
-{
+if ($Game->isOver()) {
 	echo json_encode([
 			"status" => 0,
 		]);
-}
-else
-{
+} else {
+
+	$bees = [];
+	if ($Game->getBee("Worker")) {
+		$bees["Worker"] = [
+				"life" => $Game->getBee("Worker")->life, 
+				"lifeSpan" => $Game->getBee("Worker")->lifeSpan,
+			];
+	}
+
+	if ($Game->getBee("Queen")) {
+		$bees["Queen"] = [
+				"life" => $Game->getBee("Queen")->life, 
+				"lifeSpan" => $Game->getBee("Queen")->lifeSpan
+			];
+	}
+
+	if ($Game->getBee("Drone")) {
+		$bees["Drone"] = [
+				"life" => $Game->getBee("Drone")->life, 
+				"lifeSpan" => $Game->getBee("Drone")->lifeSpan
+			];	
+	}
+
 	echo json_encode([
 			"status" => 1,
-			"round" => $Game->round,
-			"bees" => [
-				"Queen" => ["life" => $Game->queen->life, "lifeSpan" => $Game->queen->lifeSpan],
-				"Worker" => ["life" => $Game->worker->life, "lifeSpan" => $Game->worker->lifeSpan],
-				"Drone" => ["life" => $Game->drone->life, "lifeSpan" => $Game->drone->lifeSpan],
-			]
+			"round" => $Game->getRound(),
+			"bees" => $bees,
 		]);
 }
 
-//Set the changed game object into store file
-$storedGame = serialize($Game);
-file_put_contents('../store', $storedGame);
-
+$_SESSION["Game"] = serialize($Game);
 ?>

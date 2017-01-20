@@ -1,23 +1,45 @@
 <?php
 
-	require '../vendor/autoload.php';
+session_start();
 
-	//Start new game
-	$Game = new App\Game;
+require '../vendor/autoload.php';
 
-	//Send new game info as json
-	echo json_encode([
-			"status" => 1,
-			"round" => $Game->round,
-			"bees" => [
-				"Queen" => ["life" => $Game->queen->life, "lifeSpan" => $Game->queen->lifeSpan],
-				"Worker" => ["life" => $Game->worker->life, "lifeSpan" => $Game->worker->lifeSpan],
-				"Drone" => ["life" => $Game->drone->life, "lifeSpan" => $Game->drone->lifeSpan],
-			]
-		]);
+$Game = new MehmetUygun\Game();
+	
+$Queen = new MehmetUygun\Model\Queen;
+$Drone = new MehmetUygun\Model\Drone;
+$Worker = new MehmetUygun\Model\Worker(10, 20, 10);
 
-	//Set object in store page
-	$storedGame = serialize($Game);
-	file_put_contents('../store', $storedGame);
+$Game->addBee($Queen);
+$Game->addBee($Drone);
+$Game->addBee($Worker);
 
-?>
+$_SESSION["Game"] = serialize($Game);
+
+$bees = [];
+if ($Game->getBee("Worker")) {
+	$bees["Worker"] = [
+			"life" => $Game->getBee("Worker")->life, 
+			"lifeSpan" => $Game->getBee("Worker")->lifeSpan,
+		];
+}
+
+if ($Game->getBee("Queen")) {
+	$bees["Queen"] = [
+			"life" => $Game->getBee("Queen")->life, 
+			"lifeSpan" => $Game->getBee("Queen")->lifeSpan
+		];
+}
+
+if ($Game->getBee("Drone")) {
+	$bees["Drone"] = [
+			"life" => $Game->getBee("Drone")->life, 
+			"lifeSpan" => $Game->getBee("Drone")->lifeSpan
+		];	
+}
+
+echo json_encode([
+		"status" => 1,
+		"round" => $Game->getRound(),
+		"bees" => $bees,
+	]);
