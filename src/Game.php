@@ -1,6 +1,8 @@
 <?php 
 namespace MehmetUygun\BeeGame;
 
+use MehmetUygun\BeeGame\Model\BeeInterface;
+
 /**
 * The class of game which do game logic
 */
@@ -33,7 +35,7 @@ class Game
 	 * Add new bee to array
 	 * @param Model\Bee
 	 */
-	public function addBee($bee)
+	public function addBee(BeeInterface $bee)
 	{
 		$this->bees[] = $bee;
 	}
@@ -60,7 +62,7 @@ class Game
 	 * @param Model\Bee $selectedBee
 	 * @return void
 	 */
-	public function hitBee(Model\Bee $bee = null)
+	public function hitBee(BeeInterface $bee = null)
 	{
 		if ($this->isOver()) {
 			return;
