@@ -46,4 +46,40 @@ class BeeTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals(4, $workerBee->getLife());
 	}
+
+	public function testIsDead()
+	{
+		$workerBee = new Worker(5, 1, 10);
+
+		$this->assertEquals(1, $workerBee->getLife());
+
+		$workerBee->subHitPoint();
+
+		$this->assertEquals(0, $workerBee->GetLife());
+
+		$this->assertTrue($workerBee->isDead());
+	}
+
+	public function testGetLife()
+	{
+		$workerBee = new Worker(5, 1, 10);
+
+		$this->assertEquals(1, $workerBee->getLife());
+	}
+
+	public function testGetLifeSpan()
+	{
+		$workerBee = new Worker(5, 1, 10);
+
+		$this->assertEquals(5, $workerBee->getLifeSpan());
+	}
+
+	public function testGetHitPoint()
+	{
+		$workerBee = new Worker(5, 1, 10);
+
+		$this->assertEquals(10, $workerBee->getHitPoint());
+	}
+
+
 }
