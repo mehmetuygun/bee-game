@@ -4,23 +4,14 @@ namespace MehmetUygun\BeeGame\Model;
 /**
 * The queen model class.
 */
-class Queen extends Bee
+class Queen extends AbstractBee
 {
-	
-	/**
-	 * The constructor of queen model
-	 * @param integer $lifeSpan 
-	 * @param integer $life     
-	 * @param integer $hitPoint
-	 */
-	function __construct($lifeSpan = 100, $life = 1, $hitPoint = 8)
+	const LIFE_SPAN = 100;
+	const LIFE = 1;
+	const HIT_POINT = 8;
+
+	public function __construct($lifeSpan = self::LIFE_SPAN, $life = self::LIFE, $hitPoint = self::HIT_POINT)
 	{
-		$this->lifeSpan = $lifeSpan;
-		$this->_lifeSpan = $lifeSpan;
-		$this->life 	= $life;
-		$this->_life 	= $life;
-		$this->hitPoint = $hitPoint;
-		$this->_hitPoint = $hitPoint;
+		parent::__construct($lifeSpan, $life, $hitPoint);
 	}
 }
-?>

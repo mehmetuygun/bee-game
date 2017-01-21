@@ -4,22 +4,14 @@ namespace MehmetUygun\BeeGame\Model;
 /**
 * The class of drone model.
 */
-class Drone extends Bee
+class Drone extends AbstractBee
 {
-	
-	/**
-	 * The constructor of drone model
-	 * @param integer $lifeSpan 
-	 * @param integer $life     
-	 * @param integer $hitPoint
-	 */
-	function __construct($lifeSpan = 50, $life = 8, $hitPoint = 12)
+	const LIFE_SPAN = 50;
+	const LIFE = 8;
+	const HIT_POINT = 12;
+
+	public function __construct($lifeSpan = self::LIFE_SPAN, $life = self::LIFE, $hitPoint = self::HIT_POINT)
 	{
-		$this->lifeSpan = $lifeSpan;
-		$this->_lifeSpan = $lifeSpan;
-		$this->life 	= $life;
-		$this->_life 	= $life;
-		$this->hitPoint = $hitPoint;
-		$this->_hitPoint = $hitPoint;
+		parent::__construct($lifeSpan, $life, $hitPoint);
 	}
 }

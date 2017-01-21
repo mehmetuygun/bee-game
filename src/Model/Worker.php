@@ -4,21 +4,14 @@ namespace MehmetUygun\BeeGame\Model;
 /**
 * The class of worker model.
 */
-class Worker extends Bee
+class Worker extends AbstractBee
 {
-	/**
-	 * The constructor of worker model
-	 * @param integer $lifeSpan 
-	 * @param integer $life     
-	 * @param integer $hitPoint
-	 */
-	function __construct($lifeSpan = 75, $life = 5, $hitPoint = 10)
+	const LIFE_SPAN = 75;
+	const LIFE = 5;
+	const HIT_POINT = 10;
+
+	public function __construct($lifeSpan = self::LIFE_SPAN, $life = self::LIFE, $hitPoint = self::HIT_POINT)
 	{
-		$this->lifeSpan = $lifeSpan;
-		$this->_lifeSpan = $lifeSpan;
-		$this->life 	= $life;
-		$this->_life 	= $life;
-		$this->hitPoint = $hitPoint;
-		$this->_hitPoint = $hitPoint;
+		parent::__construct($lifeSpan, $life, $hitPoint);
 	}
 }
