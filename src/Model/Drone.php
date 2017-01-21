@@ -1,7 +1,5 @@
 <?php 
-namespace MehmetUygun\Model;
-
-use MehmetUygun\Model\Bee as Bee;
+namespace MehmetUygun\BeeGame\Model;
 
 /**
 * The class of drone model.

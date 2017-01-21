@@ -1,5 +1,5 @@
 <?php 
-namespace MehmetUygun;
+namespace MehmetUygun\BeeGame;
 
 /**
 * The class of game which do game logic
@@ -20,16 +20,18 @@ class Game
 
 	/**
 	 * The function does select bee randomly
-	 * @return int
+	 * @return Model\Bee
 	 */
 	public function selectBee()
 	{
-		return array_rand($this->bees);
+		$key = array_rand($this->bees);
+
+		return $this->bees[$key];
 	}
 
 	/**
 	 * Add new bee to array
-	 * @param object
+	 * @param Model\Bee
 	 */
 	public function addBee($bee)
 	{
@@ -39,39 +41,39 @@ class Game
 	/**
 	 * Get the bee information
 	 * @param  string class name of bee
-	 * @return object
+	 * @return object|null
 	 */
 	public function getBee($className)
 	{
-		$className = 'MehmetUygun\\Model\\'.$className;
+		$className = 'MehmetUygun\\BeeGame\\Model\\'.$className;
 		foreach ($this->bees as $key => $value) {
-			if ($value instanceof $className)
+			if ($value instanceof $className) {
 				return $value;
+			}
 		}
+
+		return null;
 	}
 
 	/**
 	 * Hit the bee
+	 * @param Model\Bee $selectedBee
 	 * @return void
 	 */
-	public function hitBee($selectBee = null)
+	public function hitBee(Model\Bee $bee = null)
 	{
 		if ($this->isOver()) {
 			return;
 		}
 
-		if ($selectBee) {
-			$selectedBee = $selectBee;
-			$bee = $this->bees[$selectedBee];
-		} else {
-			$selectedBee = $this->selectBee();
-			$bee = $this->bees[$selectedBee];
+		if (null === $bee) {
+			$bee = $this->selectBee();
 		}
 
 		$bee->subHitPoint();
 
 		if ($bee->isDead()) {
-			$this->removeBee($selectedBee);
+			$this->removeBee($bee);
 		}
 
 		$this->round += 1;
@@ -81,21 +83,9 @@ class Game
 	 * Check if game is over
 	 * @return boolean 
 	 */
-	public function isOver($bee = "Queen" )
+	public function isOver()
 	{
-		if (!in_array($this->getBee("Queen"), $this->bees))
-			return true;
-		return $this->getBee("Queen")->isDead();
-	}
-
-	/**
-	 * Remove bee from the list
-	 * @param  integer 			 the key of array which holds bee
-	 * @return void
-	 */
-	private function removeBee($selectBee)
-	{
-		unset($this->bees[$selectBee]);
+		return null === $this->getBee("Queen");
 	}
 
 	/**
@@ -105,5 +95,18 @@ class Game
 	public function getRound()
 	{
 		return $this->round;
+	}
+
+	/**
+	 * Remove bee from the list
+	 * @param  Model\Bee $selectBee	 the key of array which holds bee
+	 */
+	public function removeBee($selectBee)
+	{
+		foreach ($this->bees as $key => $bee) {
+			if ($bee === $selectBee) {
+				unset($this->bees[$key]);
+			}
+		}
 	}
 }

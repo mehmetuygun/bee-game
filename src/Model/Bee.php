@@ -1,5 +1,5 @@
 <?php 
-namespace MehmetUygun\Model;
+namespace MehmetUygun\BeeGame\Model;
 
 /**
 * The Bee abstract class.
@@ -29,12 +29,9 @@ abstract class Bee
 	 * @return void
 	 */
 	
-	protected $_lifeSpan, $_life, $_hitPoint;
-
-	public function hit()
-	{
-		$this->lifeSpan -= $this->hitPoint;
-	}
+	protected $_lifeSpan;
+	protected $_life;
+	protected $_hitPoint;
 
 	/**
 	 * The function which check if bee is dead
@@ -44,9 +41,6 @@ abstract class Bee
 	{
 		if ($this->life < 1) {
 			return true; 
-		} elseif ($this->lifeSpan < 1) {
-			$this->subLife();
-			$this->resetLifeSpan();
 		}
 
 		return false;
@@ -60,8 +54,10 @@ abstract class Bee
 	{
 		$this->lifeSpan -= $this->hitPoint;
 
-		if ($this->lifeSpan < 1)
+		if ($this->lifeSpan < 1) {
 			$this->subLife();
+			$this->resetLifeSpan();
+		}
 	}
 
 	private function subLife($life = 1)

@@ -1,7 +1,5 @@
 <?php 
-namespace MehmetUygun\Model;
-
-use MehmetUygun\Model\Bee as Bee;
+namespace MehmetUygun\BeeGame\Model;
 
 /**
 * The class of worker model.
@@ -24,4 +22,3 @@ class Worker extends Bee
 		$this->_hitPoint = $hitPoint;
 	}
 }
-?>
