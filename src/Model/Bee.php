@@ -10,19 +10,19 @@ abstract class Bee
 	 * The total points of bee. When it is deducted in zero. The bee loses its life.
 	 * @var integer
 	 */
-	public $lifeSpan;
+	protected $lifeSpan;
 
 	/**
 	 * The amount of life that bee has.
 	 * @var [type]
 	 */
-	public $life;
+	protected $life;
 
 	/**
 	 * The hit point that will deduct from bee's lifeSpan.
 	 * @var [type]
 	 */
-	public $hitPoint;
+	protected $hitPoint;
 
 	/**
 	 * The function which subtructs hit point from life span of bee
@@ -58,6 +58,21 @@ abstract class Bee
 			$this->subLife();
 			$this->resetLifeSpan();
 		}
+	}
+
+	public function getLife()
+	{
+		return $this->life;
+	}
+
+	public function getLifeSpan()
+	{
+		return $this->lifeSpan;
+	}
+
+	public function getHitPoint()
+	{
+		return $this->hitPoint;
 	}
 
 	private function subLife($life = 1)
