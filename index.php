@@ -1,15 +1,21 @@
 <?php
 
-	require __DIR__ . '/vendor/autoload.php';
+session_start();
 
-	$Game = new App\Game();
+// autoload
+require __DIR__ . '/vendor/autoload.php';
 
-	/**
-	 * Store object as a file to use in another php file
-	 * @var object
-	 */
-	$storedGame = serialize($Game);
-	file_put_contents('store', $storedGame);
+$Game = new MehmetUygun\BeeGame\Game();
+	
+$Queen = new MehmetUygun\BeeGame\Model\Queen;
+$Drone = new MehmetUygun\BeeGame\Model\Drone;
+$Worker = new MehmetUygun\BeeGame\Model\Worker(10, 20, 10);
+
+$Game->addBee($Queen);
+$Game->addBee($Drone);
+$Game->addBee($Worker);
+
+$_SESSION["Game"] = serialize($Game);
 
 ?>
 <!DOCTYPE html>
@@ -37,18 +43,18 @@
 				<tbody id="tbody">
 					<tr>
 						<td>Queen</td>
-						<td>1</td>
-						<td>100</td>
+						<td><?php echo $Game->getBee("Queen")->life; ?></td>
+						<td><?php echo $Game->getBee("Queen")->lifeSpan; ?></td>
 					</tr>
 					<tr>
 						<td>Worker</td>
-						<td>5</td>
-						<td>75</td>
+						<td><?php echo $Game->getBee("Worker")->life; ?></td>
+						<td><?php echo $Game->getBee("Worker")->lifeSpan; ?></td>
 					</tr>					
 					<tr>
 						<td>Drone</td>
-						<td>8</td>
-						<td>50</td>
+						<td><?php echo $Game->getBee("Drone")->life; ?></td>
+						<td><?php echo $Game->getBee("Drone")->lifeSpan; ?></td>
 					</tr>
 				</tbody>
 			</table>
@@ -83,8 +89,8 @@
 		$( "#play_again" ).click(function(){
 			$.getJSON( 'request/play_again.php', function( data ) {
 				$("#tbody").html(display(data.bees));
+				display_round(data.round);
 				$("#inform").html("");
-				$("#display_round").html("0");
 			});
 		});
 
@@ -98,19 +104,35 @@
 			var html = "";
 			html += "<tr>";
 			html += "<td>Queen</td>";
-			html += "<td>" + data.Queen.life + "</td>";
-			html += "<td>" + data.Queen.lifeSpan;
-			html += "</td>";
-			html += "</tr>";
+
+			if(typeof data.Queen === 'undefined') {
+    			html += "<td>0</td><td>0</td>";
+			} else {
+				html += "<td>" + data.Queen.life + "</td>";
+				html += "<td>" + data.Queen.lifeSpan + "</td>";
+			}
+
 			html += "<tr>";
 			html += "<td>Worker</td>";
-			html += "<td>" + data.Worker.life + "</td>";
-			html += "<td>" + data.Worker.lifeSpan + "</td>";
+
+			if(typeof data.Worker === 'undefined') {
+    			html += "<td>0</td><td>0</td>";
+			} else {
+				html += "<td>" + data.Worker.life + "</td>";
+				html += "<td>" + data.Worker.lifeSpan + "</td>";
+			}
+
 			html += "</tr>";
 			html += "<tr>";
+
 			html += "<td>Drone</td>";
-			html += "<td>" + data.Drone.life + "</td>";
-			html += "<td>" + data.Drone.lifeSpan + "</td>";
+			if(typeof data.Drone === 'undefined') {
+    			html += "<td>0</td><td>0</td>";
+			} else {
+				html += "<td>" + data.Drone.life + "</td>";
+				html += "<td>" + data.Drone.lifeSpan + "</td>";
+			}
+
 			html += "</tr>";
 
 			return html;
