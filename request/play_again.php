@@ -4,11 +4,11 @@ session_start();
 
 require '../vendor/autoload.php';
 
-$Game = new MehmetUygun\Game();
+$Game = new MehmetUygun\BeeGame\Game();
 	
-$Queen = new MehmetUygun\Model\Queen;
-$Drone = new MehmetUygun\Model\Drone;
-$Worker = new MehmetUygun\Model\Worker(10, 20, 10);
+$Queen = new MehmetUygun\BeeGame\Model\Queen;
+$Drone = new MehmetUygun\BeeGame\Model\Drone;
+$Worker = new MehmetUygun\BeeGame\Model\Worker(10, 20, 10);
 
 $Game->addBee($Queen);
 $Game->addBee($Drone);

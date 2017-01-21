@@ -47,4 +47,3 @@ if ($Game->isOver()) {
 }
 
 $_SESSION["Game"] = serialize($Game);
-?>
