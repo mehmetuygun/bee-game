@@ -20,22 +20,22 @@ if ($Game->isOver()) {
 	$bees = [];
 	if ($Game->getBee("Worker")) {
 		$bees["Worker"] = [
-				"life" => $Game->getBee("Worker")->life, 
-				"lifeSpan" => $Game->getBee("Worker")->lifeSpan,
+				"life" => $Game->getBee("Worker")->getLife(), 
+				"lifeSpan" => $Game->getBee("Worker")->getLifeSpan(),
 			];
 	}
 
 	if ($Game->getBee("Queen")) {
 		$bees["Queen"] = [
-				"life" => $Game->getBee("Queen")->life, 
-				"lifeSpan" => $Game->getBee("Queen")->lifeSpan
+				"life" => $Game->getBee("Queen")->getLife(), 
+				"lifeSpan" => $Game->getBee("Queen")->getLifeSpan()
 			];
 	}
 
 	if ($Game->getBee("Drone")) {
 		$bees["Drone"] = [
-				"life" => $Game->getBee("Drone")->life, 
-				"lifeSpan" => $Game->getBee("Drone")->lifeSpan
+				"life" => $Game->getBee("Drone")->getLife(), 
+				"lifeSpan" => $Game->getBee("Drone")->getLifeSpan()
 			];	
 	}
 
