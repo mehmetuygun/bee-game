@@ -9,7 +9,7 @@ $Game = new MehmetUygun\BeeGame\Game();
 	
 $Queen = new MehmetUygun\BeeGame\Model\Queen;
 $Drone = new MehmetUygun\BeeGame\Model\Drone;
-$Worker = new MehmetUygun\BeeGame\Model\Worker(10, 20, 10);
+$Worker = new MehmetUygun\BeeGame\Model\Worker(5, 2, 1);
 
 $Game->addBee($Queen);
 $Game->addBee($Drone);
@@ -32,8 +32,10 @@ $_SESSION["Game"] = serialize($Game);
 <body>
 
 	<div class="container" style="margin-top: 100px; width: 300px">
+		<div style="text-align: center;">
 			<button class="btn btn-danger" id="hit" name="hit">HIT</button>
 			<button class="btn btn-success" id="play_again" name="playagain">PLAY AGAIN</button>
+		</div>
 
 		<div id="display" style="margin-top: 20px;">
 			<table class="table table-bordered">
@@ -77,6 +79,8 @@ $_SESSION["Game"] = serialize($Game);
 					if (data.status == 0)
 					{
 						$("#inform").html("Game is over!. <br> You can start again by pressing play again button.");
+
+						$("#hit").attr("disabled", true);
 					}	
 					else
 					{
@@ -91,8 +95,11 @@ $_SESSION["Game"] = serialize($Game);
 				$("#tbody").html(display(data.bees));
 				display_round(data.round);
 				$("#inform").html("");
+				$("#hit").attr("disabled", false);
 			});
 		});
+
+
 
 		/**
 		 * Display bee"s infromation
