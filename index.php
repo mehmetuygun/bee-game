@@ -43,18 +43,18 @@ $_SESSION["Game"] = serialize($Game);
 				<tbody id="tbody">
 					<tr>
 						<td>Queen</td>
-						<td><?php echo $Game->getBee("Queen")->life; ?></td>
-						<td><?php echo $Game->getBee("Queen")->lifeSpan; ?></td>
+						<td><?php echo $Game->getBee("Queen")->getLife(); ?></td>
+						<td><?php echo $Game->getBee("Queen")->getLifeSpan(); ?></td>
 					</tr>
 					<tr>
 						<td>Worker</td>
-						<td><?php echo $Game->getBee("Worker")->life; ?></td>
-						<td><?php echo $Game->getBee("Worker")->lifeSpan; ?></td>
+						<td><?php echo $Game->getBee("Worker")->getLife(); ?></td>
+						<td><?php echo $Game->getBee("Worker")->getLifeSpan(); ?></td>
 					</tr>					
 					<tr>
 						<td>Drone</td>
-						<td><?php echo $Game->getBee("Drone")->life; ?></td>
-						<td><?php echo $Game->getBee("Drone")->lifeSpan; ?></td>
+						<td><?php echo $Game->getBee("Drone")->getLife(); ?></td>
+						<td><?php echo $Game->getBee("Drone")->getLifeSpan(); ?></td>
 					</tr>
 				</tbody>
 			</table>
