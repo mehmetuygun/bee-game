@@ -6,6 +6,8 @@ use MehmetUygun\BeeGame\Game;
 use MehmetUygun\BeeGame\Model\Drone;
 use MehmetUygun\BeeGame\Model\Queen;
 use MehmetUygun\BeeGame\Model\Worker;
+use MehmetUygun\BeeGame\RandomGenerator;
+use Prophecy\Argument;
 
 class GameTest extends \PHPUnit_Framework_TestCase
 {
@@ -56,8 +58,8 @@ class GameTest extends \PHPUnit_Framework_TestCase
 	public function testHitBeeAndSelectBee()
 	{
 		$game = new Game();
-
 		$queenBee = new Queen(100, 5, 5);
+
 		$bee = new Drone(10, 5, 5);
 		$workerBee = new Worker(1, 5, 5);
 		
@@ -69,9 +71,31 @@ class GameTest extends \PHPUnit_Framework_TestCase
 		$game->hitBee($workerBee);
 
 		$this->assertEquals(5, $game->getBee("Drone")->getLifeSpan());
-
 		$this->assertEquals(4, $game->getBee('Worker')->getLife());
 
+		$game = new Game();
+
+		$queenBee = new Queen(100, 5, 5);
+		$newWorkerBee = new Worker(1, 1, 5);
+		
+		$game->addBee($newWorkerBee);
+		$game->addBee($queenBee);
+
+		$game->hitBee($newWorkerBee);
+
+		$this->assertNull($game->getBee("Worker"));
+
+		$game->removeBee($queenBee);
+
+		$this->assertNull($game->hitBee($queenBee));
+
+		$game = new Game();
+
+		$queenBee = new Queen(10, 1, 5);
+		$workerBee = new Worker(10, 1, 5);
+		$droneBee = new Drone(10, 1, 5);
+
+		$game->hitBee();
 	}
 
 	public function testGetRound()
@@ -87,6 +111,26 @@ class GameTest extends \PHPUnit_Framework_TestCase
 		$game->hitBee($queenBee);
 
 		$this->assertEquals(1, $game->getRound());
+	}
+
+	public function testHitBeeGeneratesBeeWhenNoBeeGiven()
+	{
+		$game = new Game();
+
+		$queenBee = new Queen(10, 5, 5);
+		$workerBee = new Worker(10, 5, 5);
+		$array = [$queenBee, $workerBee];
+
+		$randomGenerator = $this->prophesize(RandomGenerator::class);
+		$randomGenerator->getRandomElement($array)
+			->willReturn($workerBee);
+
+		$game->setRandomGenerator($randomGenerator->reveal());
+
+		$game->addBee($queenBee)
+			->addBee($workerBee);
+
+		$game->hitBee();
 	}
 }
 
