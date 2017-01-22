@@ -26,4 +26,4 @@ Drone hase
   
   Screenshot of game
   
-  ![Alt text](  https://s23.postimg.org/tim2gmk97/game_screen_shot.png "bee-game")
+  ![Alt text](  https://s29.postimg.org/z0g1webhj/bee_game.jpg "bee-game")
