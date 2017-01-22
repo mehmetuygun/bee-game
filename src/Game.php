@@ -2,12 +2,18 @@
 namespace MehmetUygun\BeeGame;
 
 use MehmetUygun\BeeGame\Model\BeeInterface;
+use MehmetUygun\BeeGame\RandomBee;
 
 /**
 * The class of game which do game logic
 */
 class Game
 {
+	/**
+	 * @var RandomGenerator
+	 */
+	private $randomGenerator;
+
 	/**
 	 * hold bees in a array
 	 * @var array
@@ -21,23 +27,23 @@ class Game
 	private $round = 0;
 
 	/**
-	 * The function does select bee randomly
-	 * @return Model\Bee
+	 * @param RandomGenerator $randomGenerator
 	 */
-	public function selectBee()
+	public function setRandomGenerator(RandomGenerator $randomGenerator)
 	{
-		$key = array_rand($this->bees);
-
-		return $this->bees[$key];
+		$this->randomGenerator = $randomGenerator;
 	}
 
 	/**
 	 * Add new bee to array
-	 * @param Model\Bee
+	 * @param BeeInterface
+	 * @return Game
 	 */
 	public function addBee(BeeInterface $bee)
 	{
 		$this->bees[] = $bee;
+
+		return $this;
 	}
 
 	/**
@@ -59,7 +65,7 @@ class Game
 
 	/**
 	 * Hit the bee
-	 * @param Model\Bee $selectedBee
+	 * @param BeeInterface $selectedBee
 	 * @return void
 	 */
 	public function hitBee(BeeInterface $bee = null)
@@ -69,7 +75,9 @@ class Game
 		}
 
 		if (null === $bee) {
-			$bee = $this->selectBee();
+			$bee = $this->randomGenerator->getRandomElement(
+				$this->bees
+			);
 		}
 
 		$bee->subHitPoint();
