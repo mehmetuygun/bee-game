@@ -26,7 +26,7 @@ $_SESSION["Game"] = serialize($Game);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="vendor/twitter/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -68,94 +68,11 @@ $_SESSION["Game"] = serialize($Game);
 	</div>
 
 	<!-- include jquery file before bootstrap 		 -->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<!-- include bootstrap -->
-	<script type="text/javascript" src="vendor/twitter/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-	<script type="text/javascript">
-		
-		$( "#hit" ).click(function() {
-			$.getJSON( 'request/hit.php', function( data ) {
-					if (data.status == 0)
-					{
-						$("#inform").html("Game is over!. <br> You can start again by pressing play again button.");
-
-						$("#hit").attr("disabled", true);
-					}	
-					else
-					{
-						$("#tbody").html(display(data.bees));
-						display_round(data.round);
-					}
-			});
-		});
-
-		$( "#play_again" ).click(function(){
-			$.getJSON( 'request/play_again.php', function( data ) {
-				$("#tbody").html(display(data.bees));
-				display_round(data.round);
-				$("#inform").html("");
-				$("#hit").attr("disabled", false);
-			});
-		});
-
-
-
-		/**
-		 * Display bee"s infromation
-		 * @param  array
-		 * @return string
-		 */
-		function display(data)
-		{
-			var html = "";
-			html += "<tr>";
-			html += "<td>Queen</td>";
-
-			if(typeof data.Queen === 'undefined') {
-    			html += "<td>0</td><td>0</td>";
-			} else {
-				html += "<td>" + data.Queen.life + "</td>";
-				html += "<td>" + data.Queen.lifeSpan + "</td>";
-			}
-
-			html += "<tr>";
-			html += "<td>Worker</td>";
-
-			if(typeof data.Worker === 'undefined') {
-    			html += "<td>0</td><td>0</td>";
-			} else {
-				html += "<td>" + data.Worker.life + "</td>";
-				html += "<td>" + data.Worker.lifeSpan + "</td>";
-			}
-
-			html += "</tr>";
-			html += "<tr>";
-
-			html += "<td>Drone</td>";
-			if(typeof data.Drone === 'undefined') {
-    			html += "<td>0</td><td>0</td>";
-			} else {
-				html += "<td>" + data.Drone.life + "</td>";
-				html += "<td>" + data.Drone.lifeSpan + "</td>";
-			}
-
-			html += "</tr>";
-
-			return html;
-		}
-
-		/**
-		 * Display round of game
-		 * @param  integer
-		 * @return void
-		 */
-		function display_round(round)
-		{
-			$("#display_round").html(round);
-		}
-
-	</script>
+	<script type="text/javascript" src="js/bee-game.js"></script>
 
 </body>
 </html>
