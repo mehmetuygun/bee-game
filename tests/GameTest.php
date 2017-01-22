@@ -68,9 +68,9 @@ class GameTest extends \PHPUnit_Framework_TestCase
 		$game->hitBee($bee);
 		$game->hitBee($workerBee);
 
-		$this->assertEquals(5, $game->getBee("Drone")->lifeSpan);
+		$this->assertEquals(5, $game->getBee("Drone")->getLifeSpan());
 
-		$this->assertEquals(4, $game->getBee('Worker')->life);
+		$this->assertEquals(4, $game->getBee('Worker')->getLife());
 
 	}
 
