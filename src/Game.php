@@ -2,7 +2,7 @@
 namespace MehmetUygun\BeeGame;
 
 use MehmetUygun\BeeGame\Model\BeeInterface;
-use MehmetUygun\BeeGame\RandomBee;
+use MehmetUygun\BeeGame\RandomGenerator;
 
 /**
 * The class of game which do game logic

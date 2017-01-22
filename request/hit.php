@@ -9,6 +9,8 @@ require '../vendor/autoload.php';
 //Convert stored file into object
 $Game = unserialize($_SESSION["Game"]);
 
+$Game->setRandomGenerator(new MehmetUygun\BeeGame\RandomGenerator);
+
 $Game->hitBee();
 
 if ($Game->isOver()) {
