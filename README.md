@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mehmetuygun/bee-game.svg?branch=master)](https://travis-ci.org/mehmetuygun/bee-game)
+
 # bee-game
 
 There are 3 bees which are that queen, worker, and drone. All of them has different amount of life, lifespan, and hit point.
