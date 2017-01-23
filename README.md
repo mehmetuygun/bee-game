@@ -67,7 +67,7 @@ $Game = unserialize($_SESSION["Game"]);
 
 ```php
 // Set random generator to hit bee randomly 
-$Game->setRandomGenerator(new MehmetUygun\BeeGame\RandomGenerator);
+$Game->setRandomGenerator(new RandomGenerator);
 ```
 
 ```php
