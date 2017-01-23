@@ -1,34 +1,27 @@
 [![Build Status](https://travis-ci.org/mehmetuygun/bee-game.svg?branch=master)](https://travis-ci.org/mehmetuygun/bee-game)
 
-# bee-game
+# Bee-Game
 
-There are 3 bees which are that queen, worker, and drone. All of them has different amount of life, lifespan, and hit point.
+You have initially 1 queen bee, 5 worker bee, and 8 drone bee. 
 
-QUEEN has
-  1 life
-  100 life span
-  8 hit point
+# Rules
 
-WORKER has
-  5 life
-  75 life span
-  10 hit point
+Every bee has life span, hit point, and life. Initially, the following properties are predefined.
 
-Drone hase
-  8 life
-  50 life span
-  12 hit point
++ Bees
+  ..* Queen has 100 life span, and 8 hit point.
+  ..* Worker has 75 life span, and 10 hit point.
+  ..* Drone has 50 life span, and 12 hit point.
   
-  In each round, one of bee must be hit by player the selection of which bee will be get hit is made by application as randomly.
-  
-  If queen be is dead, the game is over.
-  If all bees are dead, the game is over too.
-  
-  Each turn the round increases by 1 
-  
-  Screenshot of game
-  
-  ![Alt text](  https://s29.postimg.org/z0g1webhj/bee_game.jpg "bee-game")
++ **Rule 1** If all bees are dead, the game will be over.
++ **Rule 2** If Queen bee is dead, the game will be over automatically
++ **Rule 3** If the life span of bee gets hit, the hit point will be removed from life span
++ **Rule 4** If the life span happens 0 or under it, the 1 life will be removed from life of bee
++ **Rule 5** If the life happens 0, the bee will be dead and removed.
+
+# How it works
+
+When hit function works the randomly or pre-selected bee gets hit. In this, I used a button to make possible to hit a bee randomly. The hit point will be removed from life span of randomly or preselected bee. And when all bee or queen bee is dead, the game will be over.
 
 # Getting started
 
