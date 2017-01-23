@@ -78,6 +78,11 @@ $Game->hitBee();
 ```
 
 ```php
+// You can select bee which is you want to hit it
+$Game->hitBee($Worker);
+```
+
+```php
 // Check game if it is over 
 if ($Game->isOver()) {
   // Display new bee info
