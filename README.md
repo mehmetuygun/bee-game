@@ -24,7 +24,7 @@ When hit function works the randomly or pre-selected bee gets hit. In this, I us
 
 # Requirement
 
-+ PHP >=5.4
++ PHP >=5.5
 
 # Usage
 
