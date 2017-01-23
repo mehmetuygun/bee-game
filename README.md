@@ -8,10 +8,9 @@ You have initially 1 queen bee, 5 worker bee, and 8 drone bee.
 
 Every bee has life span, hit point, and life. Initially, the following properties are predefined.
 
-+ Bees
-  ⋅⋅* Queen has 100 life span, and 8 hit point.
-  ⋅⋅* Worker has 75 life span, and 10 hit point.
-  ⋅⋅* Drone has 50 life span, and 12 hit point.
+  Queen has 100 life span, and 8 hit point.
+  Worker has 75 life span, and 10 hit point.
+  Drone has 50 life span, and 12 hit point.
   
 + **Rule 1** If all bees are dead, the game will be over.
 + **Rule 2** If Queen bee is dead, the game will be over automatically
