@@ -83,3 +83,10 @@ if ($Game->isOver()) {
 }
 ```
 # License
+
+  Intervention Image is licensed under the MIT License.
+
+  Copyright 2017 
+  [Mehmet Uygun](https://www.linkedin.com/in/mehmet-uygun "Linkedin Account")
+
+  
