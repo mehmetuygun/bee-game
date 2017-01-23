@@ -24,6 +24,62 @@ Drone hase
   If queen be is dead, the game is over.
   If all bees are dead, the game is over too.
   
+  Each turn the round increases by 1 
+  
   Screenshot of game
   
   ![Alt text](  https://s29.postimg.org/z0g1webhj/bee_game.jpg "bee-game")
+
+# Getting started
+
+# Usage
+
+```php
+// Start new game
+$Game = new Game()
+```
+
+```php
+// Create a new queen bee
+$Queen = new Queen();
+```
+
+```php
+// Create a new worker bee
+$Queen = new Queen();
+```
+
+```php
+// Create a new drone bee
+$Worker = new Worker();
+```
+
+```php
+// Add a bee into game
+$Game->addBee($Queen);
+$Game->addBee($Worker);
+$Game->addBee($Drone);
+```
+
+```php
+// Set random generator to hit bee randomly 
+$Game->setRandomGenerator(new MehmetUygun\BeeGame\RandomGenerator);
+```
+
+```php
+// Hit a bee which is selected before as randomly
+$Game->hitBee();
+```
+
+```php
+// Check game if it is over 
+if ($Game->isOver()) {
+  // Display new bee info
+  
+  // For displaying new bee info, simply use following steps. Do not forget to use the right bee name as following
+  $Game->getBee('Queen')->getLife();
+  $Game->getBee('Worker')->getLifeSpan();
+  $Game->getBee('Drone')->getHitPoint();
+}
+```
+# License
