@@ -30,22 +30,22 @@ When hit function works the randomly or pre-selected bee gets hit. In this, I us
 
 ```php
 // Start new game
-$Game = new Game()
+$Game = new MehmetUygun\BeeGame\Game()
 ```
 
 ```php
 // Create a new queen bee
-$Queen = new Queen();
+$Queen = new MehmetUygun\BeeGame\Model\Queen();
 ```
 
 ```php
 // Create a new worker bee
-$Queen = new Queen();
+$Queen = new MehmetUygun\BeeGame\Model\Queen();
 ```
 
 ```php
 // Create a new drone bee
-$Worker = new Worker();
+$Worker = new MehmetUygun\BeeGame\Model\Worker();
 ```
 
 ```php
@@ -69,7 +69,7 @@ $Game = unserialize($_SESSION["Game"]);
 
 ```php
 // Set random generator to hit bee randomly 
-$Game->setRandomGenerator(new RandomGenerator);
+$Game->setRandomGenerator(new MehmetUygun\BeeGame\RandomGenerator);
 ```
 
 ```php
