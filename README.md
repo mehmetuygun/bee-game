@@ -20,7 +20,7 @@ Every bee has life span, hit point, and life. Initially, the following propertie
 
 # How it works
 
-When hit function works the randomly or pre-selected bee gets hit. In this, I used a button to make possible to hit a bee randomly. The hit point will be removed from life span of randomly or preselected bee. And when all bee or queen bee is dead, the game will be over.
+When hit function works the randomly or pre-selected bee gets hit. In this, I used a button to make possible to hit a bee randomly. The hit point will be removed from life span of randomly or preselected bee. And when all bee or queen bee is dead, the game will be over. Get as many as rounds you can and beat your opponent.
 
 # Requirement
 
