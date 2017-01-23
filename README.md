@@ -55,8 +55,10 @@ $Game->addBee($Worker);
 $Game->addBee($Drone);
 ```
 ```php
-//If you are gonna use $Game->hitBee() in another page or after post or get method which the user can send the information to browser
-//You should use simply session to store $Game before and after
+/**
+*If you are gonna use $Game->hitBee() in another page or after post or get method which the user can send the information to browser
+*You should simply use session to store $Game before and after
+**/
 
 // Set the game when it is loaded
 $_SESSION["Game"] = serialize($Game);
